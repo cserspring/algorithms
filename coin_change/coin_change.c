@@ -9,10 +9,9 @@ void count(int row, int col, int *deno, int **table)
         for (j = 1; j < col; j++) {
             if (i - deno[j] < 0) {
                 table[i][j] = table[i][j - 1];
-			} else {
+            } else {
                 table[i][j] = table[i - deno[j]][j] + table[i][j - 1];
-
-			}
+            }
         }
     }
 }

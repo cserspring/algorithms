@@ -1,7 +1,7 @@
 /** @file findword.cpp
  * 
  *  @brief 
- *  1. A tire tree is created to save the sorted words, when a word
+ *  1. A trie tree is created to save the sorted words, when a word
  *     is inserted into the tree, the (word, word - prefix) is pushed into a 
  *     queue. The prefix means the word which is in the list.
  *  2. The elements in the queue are poped to check whether a word can be 
@@ -14,7 +14,7 @@
  *  3. Search on the map to find the longest word, and the size of the map is 
  *     the number of words in the list can be constructed by other words.
  *
- *  @author Shuai Wang (swang1@andrew.cmu.edu)
+ *  @author cserspring
  *  @bugs No known bugs.
  */
 
