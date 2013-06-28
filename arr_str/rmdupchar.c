@@ -8,7 +8,7 @@ void rmdupchar(char *str)
     if (str == NULL)
         return;
     int len = strlen(str);
-    if (len == 0 || len == 1)
+    if (len < 2)
         return;
     int i;
     int j;
