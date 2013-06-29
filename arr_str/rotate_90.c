@@ -4,6 +4,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 
+// common approach
 void rotate_90(int **matrix, int N)
 {
     int **matrixcpy = (int **)malloc(sizeof(int *)*N);
@@ -31,6 +32,23 @@ void rotate_90(int **matrix, int N)
     free(matrixcpy);
 }
 
+// better approach
+void rotate_90_2(int **matrix, int N)
+{
+    int i;
+    int j;
+    int tmp;
+    for (i = 0; i < N/2; ++i) {
+        for (j = i; j < N - i - 1; ++j) {
+            tmp = matrix[i][j];
+            matrix[i][j] = matrix[N - j - 1][i];
+            matrix[N - j - 1][i] = matrix[N - i - 1][N - j - 1];
+            matrix[N - i - 1][N - j - 1] = matrix[j][N - i - 1];
+            matrix[j][N - i - 1] = tmp;
+        }
+    }
+}
+
 int main()
 {
     int N;
@@ -48,7 +66,7 @@ int main()
             scanf("%d", &matrix[i][j]);
     }
 
-    rotate_90(matrix, N);
+    rotate_90_2(matrix, N);
 
     for (i = 0; i < N; ++i) {
         for (j = 0; j < N; ++j) 
