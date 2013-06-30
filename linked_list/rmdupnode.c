@@ -11,6 +11,8 @@ typedef struct node{
 
 void rmdup(node_t *head)
 {
+    if (head == NULL)
+        return;
     node_t *prev = head;
     node_t *p = head->next;
     node_t *q;
