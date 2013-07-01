@@ -11,6 +11,7 @@ typedef struct node{
     struct node *next;
 } node_t;
 
+// common approach
 node_t *add_list(node_t *head1, node_t *head2)
 {
     int sum = 0;
@@ -52,6 +53,29 @@ node_t *add_list(node_t *head1, node_t *head2)
     return head;
 }
 
+// better, recursive
+node_t *add_list2(node_t *head1, node_t *head2, int carry)
+{
+    if (head1 == NULL && head2 == NULL && carry == 0)
+        return NULL;
+    node_t *next1 = NULL;
+    node_t *next2 = NULL;
+    if (head1 != NULL) {
+        carry += head1->data;
+        next1 = head1->next;
+    }
+    if (head2 != NULL) {
+        carry += head2->data;
+        next2 = head2->next;
+    }
+
+    node_t *node = (node_t *)malloc(sizeof(node_t));
+    node->data = carry % DECIMAL;
+    node->next = add_list2(next1, next2, carry/DECIMAL);
+    return node;
+}
+
+
 int main()
 {
     /**
@@ -76,7 +100,8 @@ int main()
     node_t node9 = {9, &node10};
     node_t head2 = {9, &node9};
 
-    node_t *head = add_list(&head1, &head2);
+    //node_t *head = add_list(&head1, &head2); 
+    node_t *head = add_list2(&head1, &head2, 0);
     while (head) {
         printf("%d\n", head->data);
         head = head->next;
