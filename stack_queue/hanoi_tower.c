@@ -3,7 +3,10 @@
  */
 #include <stdio.h>
 
-// Recursive approach
+/**
+ * Recursive approach
+ * A is source, C is destination, B is the helper.
+ */
 void hanoi_recursive(int N, char A, char B, char C)
 {
     if (N == 1) {
