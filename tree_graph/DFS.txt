@@ -1,0 +1,36 @@
+procedure DFS(G,v):
+      label v as explored
+      for all edges e in G.adjacentEdges(v) do
+          if edge e is unexplored then
+              w ← G.adjacentVertex(v,e)
+              if vertex w is unexplored then
+                  label e as a discovery edge
+                  recursively call DFS(G,w)
+              else
+                  label e as a back edge
+
+
+procedure DFS-iterative(G,v):
+      label v as discovered
+      let S be a stack
+      S.push(v)
+      while S is not empty        
+            t ← S.top 
+            if t is what we're looking for: 
+                return t
+            for all edges e in G.adjacentEdges(t) do
+                if edge e is already labelled 
+                    continue with the next edge
+                w ← G.adjacentVertex(t,e)
+                if vertex w is not discovered and not explored
+                    label e as tree-edge
+                    label w as discovered
+                    S.push(w)
+                    continue at 5
+                else if vertex w is discovered
+                    label e as back-edge
+                else
+                    // vertex w is explored
+                    label e as forward- or cross-edge
+            label t as explored
+            S.pop()
