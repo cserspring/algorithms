@@ -9,13 +9,11 @@ using namespace std;
 
 void move(int i, int j, int n, vector<pair<int, int> > v)
 {
-        v.push_back(make_pair(i, j));
+    v.push_back(make_pair(i, j));
     if (i < n - 1) {
-        //      v.push_back(make_pair(i, j));
         move(i+1, j, n, v);
     }
     if (j < n - 1) {
-        //v.push_back(make_pair(i, j));
         move(i, j+1, n, v);
     }
     if (i == n - 1 && j == n - 1) {
