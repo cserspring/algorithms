@@ -3,6 +3,7 @@
  */
 #include <stdio.h>
 
+/* Time is O(2^n) */
 int fib_recursive(int n)
 {
     if (n == 0)
@@ -31,11 +32,21 @@ int fib_iterate(int n)
     return b;
 }
 
+int fib(int term, int val, int prev)
+{
+    if(term == 0) 
+        return prev;
+    if(term == 1) 
+        return val;
+    return fib(term - 1, val+prev, val);
+}
+
 int main()
 {
     int n;
     scanf("%d", &n);
     printf("%d\n", fib_recursive(n));
     printf("%d\n", fib_iterate(n));
+    printf("%d\n", fib(n, 1, 0));
     return 0;
 }
