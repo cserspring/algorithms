@@ -6,11 +6,11 @@ typedef struct node {
 } node_t;
 
 /* Pass pointer's pointer */
-void reverse_list(node_t **root)
+node_t *reverse_list(node_t *root)
 {
-    if (*root) {
-        node_t *prev = *root;
-        node_t *current = (*root)->next;
+    if (root) {
+        node_t *prev = root;
+        node_t *current = root->next;
         prev->next = NULL;
         node_t *tmp;
         while (current) {
@@ -19,7 +19,7 @@ void reverse_list(node_t **root)
             current = current->next;
             prev->next = tmp;
         }
-        *root = prev;
+        root = prev;
     }
 }
 
@@ -36,7 +36,7 @@ int main()
     root.next = &node1;
     
     node_t *head = &root;
-    reverse_list(&head);
+    head = reverse_list(head);
     while (head) {
         printf("%d\n", head->val);
         head = head->next;
