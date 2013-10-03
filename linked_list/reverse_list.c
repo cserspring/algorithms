@@ -8,7 +8,7 @@ typedef struct node {
 /* Pass pointer's pointer */
 void reverse_list(node_t **root)
 {
-    if (root) {
+    if (*root) {
         node_t *prev = *root;
         node_t *current = (*root)->next;
         prev->next = NULL;
