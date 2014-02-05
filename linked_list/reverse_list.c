@@ -21,6 +21,7 @@ node_t *reverse_list(node_t *root)
         }
         root = prev;
     }
+    return root;
 }
 
 int main()
