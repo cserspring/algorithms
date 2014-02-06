@@ -28,9 +28,11 @@ void create_binary_tree(int *a, int len, node_t **root)
 
 node_t *LCA(node_t *root, node_t *node1, node_t *node2)
 {
-    if (root == NULL || root == node1 || root == node2)
+    if (root == NULL || node1 == NULL || node2 == NULL)
+        return NULL;
+    if (root == node1 || root == node2)
         return root;
-    
+
     node_t *left = LCA(root->left, node1, node2);
     node_t *right = LCA(root->right, node1, node2);
     if (left != NULL && right != NULL)
@@ -40,6 +42,8 @@ node_t *LCA(node_t *root, node_t *node1, node_t *node2)
 
 node_t *find_node(node_t *root, int value)
 {
+    if (value > 30 || value < 0)
+        return NULL;
     if (root->value == value)
         return root;
     else if (root->value > value)
@@ -63,7 +67,8 @@ int main()
         node_t *node1 = find_node(root, v1);
         node_t *node2 = find_node(root, v2);
         node_t *target = LCA(root, node1, node2);
-        printf("%d\n", target->value);
+        if (target)
+            printf("%d\n", target->value);
     }
     return 0;
 
