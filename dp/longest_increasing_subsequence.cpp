@@ -6,12 +6,11 @@
  *   then get LCS(sorted_arr, original_arr);
  *
  * Second solution:
- *   to make every element as the tail, then get the elements that less than and 
- *   before it.
+ *   L(i) = { 1 + MAX(L(j)) }, i>j && arr[i]>arr[j]
  */
 #include <cstdio>
 #include <cstdlib>
-#include <vector>
+#include <stack>
 using namespace std;
 
 static int cmp(const void *p1, const void *p2);
@@ -27,28 +26,38 @@ int *solution1(int *arr, int len, int *res_len)
     return LCS(arr_copy, arr, len, res_len);
 }
 
-vector<int> solution2(int *arr, int len)
+stack<int> solution2(int *arr, int len)
 {
-    vector<vector<int> > vec;
-    vector<int> tmp;
-    for (int i = 0; i < len; ++i) {
-        tmp.clear();
-        for (int j = 0; j < i; ++j) {
-            if (arr[j] < arr[i])
-                tmp.push_back(arr[j]);
-        }
-        tmp.push_back(arr[i]);
-        vec.push_back(tmp);
-    }
-    int index = 0;
-    int longest = vec[0].size();
-    for (int i = 1; i < vec.size(); ++i) {
-        if (vec[i].size() > longest) {
-            longest = vec[i].size();
-            index = i;
-        }
-    }
-    return vec[index];
+	int *lis = (int *)malloc(sizeof(int) * len);
+	for (int i = 0; i < len; ++i) {
+		lis[i] = 1;
+	}
+	for (int i = 1; i < len; ++i) {
+		for (int j = 0; j < i; ++j) {
+			if (arr[i] > arr[j] && lis[i] < lis[j] + 1)
+				lis[i] = lis[j] + 1;
+		}
+	}
+
+	int res_len = lis[0];
+	int index = 0;
+	for (int i = 1; i < len; ++i) {
+		if (lis[i] > res_len) {
+			res_len = lis[i];
+			index = i;
+		}
+	}
+
+	stack<int> v;
+	int cur = arr[index];
+	v.push(cur);
+	for (int i = index - 1; i >= 0; --i) {
+		if (arr[i] < cur) {
+			cur = arr[i];
+			v.push(cur);
+		}
+	}
+	return v;
 }
 
 static int cmp(const void *p1, const void *p2)
@@ -110,8 +119,10 @@ int main()
 
     printf("***********\n");
     /* Solution 2*/
-    vector<int> r = solution2(arr, 5);
-    for (int i = 0; i < r.size(); ++i)
-        printf("%d\n", r[i]);
+    stack<int> r = solution2(arr, 5);
+    while (!r.empty()) {
+        printf("%d\n", r.top());
+        r.pop();
+	}
     return 0;
 }
