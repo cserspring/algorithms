@@ -11,6 +11,11 @@
 
  Given a grid, find the longest snake sequences and their length
  */
+
+//dp solution
+//in matrix_lis, as dp just step one step back, it does not step two steps back
+//so it is wrong.
+//in matrix_snake, it just go right or below, so this algorithm is right.
 #include <stdio.h>
 #include <math.h>
 
