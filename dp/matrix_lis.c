@@ -73,7 +73,7 @@ int get_max()
             dp[i][j] = 1;
         }
     }
-
+	// step right or below
     for (i = 0; i < m; ++i) {
         for (j = 0; j < n; ++j) {
             for (int k = -1; k <= 1; k++) {
@@ -89,6 +89,24 @@ int get_max()
             }
         }
     }
+
+	// step left or above
+    for (i = m-1; i >=0; --i) {
+        for (j = n-1; j >= 0; --j) {
+            for (int k = -1; k <= 1; k++) {
+                for (int l = -1; l <= 1; l++) {
+                    if (!(k == 0 && l == 0) &&
+                        i + k >= 0 && i + k < m &&
+                        j + l >= 0 && j + l < n &&
+                        original[i + k][j + l] > original[i][j]
+                        ) {
+                        dp[i+k][j+l] = dp[i+k][j+l] > (dp[i][j]+1) ? dp[i+k][j+l] : (dp[i][j]+1);
+                    }
+                }
+            }
+        }
+    }
+
 
     int max = 0;
     for (i = 0; i < m; ++i) {
