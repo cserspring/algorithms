@@ -39,8 +39,22 @@ public class Solution {
             return 0;
         return prices[buy] - prices[sell];
     }
+
+    public static int maxProfit2(int[] prices) {
+        int len = prices.length;
+        if (len <= 0)
+            return 0;
+        int profit = 0;
+        int low = prices[0];
+        for (int i = 1; i < len; ++i) {
+            low = Math.min(low, prices[i]);
+            profit = Math.max(profit, prices[i] - low);
+        }
+        return profit;
+    }
     
     public static void main(String args[]) {
+        //{2,4,1}
         int prices[] = {2,1};
         System.out.println(maxProfit(prices));
     }
