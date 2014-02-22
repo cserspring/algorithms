@@ -1,3 +1,4 @@
+/* 输出数组在排完序之后的index排列，如1,3,2,5,4,输出为0,2,1,4,3 */
 #include <stdio.h>
 #include <stdlib.h>
 
