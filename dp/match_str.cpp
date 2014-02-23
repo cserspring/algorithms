@@ -10,11 +10,7 @@ For example, “g*ks” matches with “geeks” match. And string “ge?ks*” 
 “geeksforgeeks” (note ‘*’ at the end of first string). But “g*k” doesn’t match with
  “gee” as character ‘k’ is not present in second string.
  */
-#include <iostream>
-#include <cstdio>
-#include <cstdlib>
-using namespace std;
-
+#include <stdio.h>
 bool match(char *first, char * second)
 {
     // If we reach at the end of both strings, we are done
@@ -39,6 +35,44 @@ bool match(char *first, char * second)
         return match(first+1, second) || match(first, second+1);
     return false;
 }
+
+bool isMatch(const char *s, const char *p) 
+{
+	// Start typing your C/C++ solution below
+	// DO NOT write int main() function
+    
+	const char* star=NULL;
+	const char* ss=s; 
+	while (*s){
+		if ((*p=='?')||(*p==*s)){s++;p++;continue;}
+		if (*p=='*'){star=p++; ss=s;continue;}
+		if (star){ p = star+1; s=++ss;continue;}
+		return false;
+	}
+	while (*p=='*'){p++;}
+	return !*p;
+}
+
+/*
+bool isMatch(const char *s, const char *p) {
+    int n=strlen(s), m=strlen(p), i, j, chars=0;
+    for(i=0; p[i]!='\0'; ++i) 
+		if(p[i]!='*' && n<++chars) 
+			return false;
+    vector<bool> dp(n+2,false);
+    for(i=m-1, dp[n]=true; i>=0; --i){
+        if(p[i]=='*'){
+            while(i>0 && p[i]==p[i-1]) --i; //skip multiple *
+            for(j=n; j>=0 && !dp[j]; --j);
+            for(; j>=0; --j) dp[j]=true;
+        }else{
+            for(j=0; j<n+1; ++j)
+                dp[j]=(p[i]==s[j] || p[i]=='?') ? dp[j+1] : false;
+        }
+    }
+    return dp[0];
+}
+*/
  
 // A function to run test cases
 void test(char *first, char *second)
@@ -55,5 +89,9 @@ int main()
     test("abc*c?d", "abcd"); // No because second must have 2 instances of 'c'
     test("*c*d", "abcd"); // Yes
     test("*?c*d", "abcd"); // Yes
+	char s[] = "abcacba";
+	char p[] = "*ac";
+	if (isMatch(s, p))
+		printf("True\n");
     return 0;
 }
