@@ -1,6 +1,16 @@
+/*
+Implement regular expression matching with support for '.' and '*'.
+
+'.' Matches any single character.
+'*' Matches zero or more of the preceding element.
+
+The matching should cover the entire input string (not partial).
+ */
+
 #include <stdio.h>
 #include <string.h>
 #include <stdlib.h>
+
 /* Recursive
  * Whether the next character of p is '*'
  */
@@ -27,9 +37,9 @@ int isMatch(const char *s, const char *p)
 */
 static int match(char a, char b)
 {
-	if (a == '.' || b == '.')
-		return 1;
-	return a==b;
+    if (a == '.' || b == '.')
+        return 1;
+    return a==b;
 }
 
 int isMatch(const char *s, const char *p) 
@@ -51,15 +61,15 @@ int isMatch(const char *s, const char *p)
     for (i = 1; i < m; ++i) {
         for (j = 1; j < n; ++j) {
             if (p[j-1] == '*') {
-				dp[i][j] = match(s[i-1], p[j-2]) ? 
-					(dp[i-1][j] || dp[i][j-2]) : dp[i][j-2];
-			} else {
-				dp[i][j] = match(s[i-1], p[j-1]) ?
-					dp[i-1][j-1] : 0;
-			}
+                dp[i][j] = match(s[i-1], p[j-2]) ? 
+                    (dp[i-1][j] || dp[i][j-2]) : dp[i][j-2];
+            } else {
+                dp[i][j] = match(s[i-1], p[j-1]) ?
+                    dp[i-1][j-1] : 0;
+            }
         }
     }
-	return dp[m-1][n-1];
+    return dp[m-1][n-1];
 }
 
 int main()
@@ -69,5 +79,5 @@ int main()
     //printf("%s\n", isMatch("aaab", "a*ab") ? "Yes" : "No");
     //printf("%s\n", isMatch("babc", ".*c") ? "Yes" : "No");
 
-	printf("%s\n", isMatch("a", ".*") ? "Yes" : "No");
+    printf("%s\n", isMatch("a", ".*") ? "Yes" : "No");
 }
