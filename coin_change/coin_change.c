@@ -23,8 +23,8 @@ void print(int **table, int row, int col)
 
 int main()
 {
-    int denominations[] = {0, 1, 2, 3};
-    int N = 10;
+    int denominations[] = {0, 2, 4, 5};
+    int N = 9;
     int M = 3;
     int i;
     int j;
