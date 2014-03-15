@@ -1,4 +1,4 @@
-package tst;
+package leetcode;
 
 /*
  * Given two words (start and end), and a dictionary, find all shortest 

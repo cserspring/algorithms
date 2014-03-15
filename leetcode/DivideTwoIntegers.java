@@ -1,4 +1,4 @@
-package tst;
+package leetcode;
 
 /* Divide two integers without using multiplication, division and mod operator. */
 public class DivideTwoIntegers {

@@ -1,4 +1,4 @@
-package tst;
+package leetcode;
 
 public class MultiplyStrings {
 	public static String multiply(String num1, String num2) {

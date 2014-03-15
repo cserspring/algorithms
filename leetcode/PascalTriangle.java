@@ -1,4 +1,4 @@
-package tst;
+package leetcode;
 
 import java.util.ArrayList;
 

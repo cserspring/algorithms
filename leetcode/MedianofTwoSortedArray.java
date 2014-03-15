@@ -1,4 +1,4 @@
-package tst;
+package leetcode;
 
 /*
  * There are two sorted arrays A and B of size m and n respectively. 

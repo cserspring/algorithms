@@ -1,4 +1,4 @@
-package tst;
+package leetcode;
 
 public class FlattenBinaryTreetoLinkedList {
 

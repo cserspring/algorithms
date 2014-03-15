@@ -1,4 +1,4 @@
-package tst;
+package leetcode;
 
 class TreeNode {
 	int val;
