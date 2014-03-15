@@ -1,0 +1,47 @@
+1. Palindrome
+2. How to crawl with 1000 servers
+3. Print binary tree by horizontal level or vertical level
+4. Wildcard matching
+5. LRU cache
+6. Multiply strings
+7. A->B, B->C, but not A->C, to find all of the ... 1in3acres
+8. Given a normal binary tree, write a function to serialize the 
+   tree into a string representation (returning the string), and 
+   also a function to deserialize a serialized string into the original 
+   binary tree.
+9. Decode ways on leetcode
+10. Trie tree
+11. Convert a binary tree into a circular doubly linked list. The order 
+    of the elements in the linked list have to be the order of elements 
+    you get when you do an in order traversal of the binary tree.
+12. Interval
+13. Edit distance
+14. Process - DEPENDANT PROCESSES
+    0 - 2,3
+    1 - 2
+    2 - nill
+    3 - nill
+
+    above data is given in map. You need to return 3,2,0,1 or 2,3,0,1 or 
+    3,2,1,0 or 2,3,1,0. Since the answer is straight forward he asked me 
+    to code that using theads. Finally he changed the input to
+    0-2,3
+    1-3,2
+    2-nill
+    3-nill
+
+    Now how would you change your code?
+15. N sorted arrays of each size k are given, print final sorted output. There 
+    will duplicates nums. Final o/P should be like {num, count}, {num, count}
+    .....where count is num of times that num is repared
+16. Swap every 2 elements in-line in linkedlist.
+17. Write function strstr
+18. Given an array where each entry can be another array, and so forth, 
+    flatten the array.
+19. Given a really big file with a lots of Facebook posts, find the ten most 
+    used words
+20. Coin change
+21. square root of X
+22. O(n) time O(1) space to print link list reversely. 
+23. hasCheated(String s1,String s2, int N) that evaluates to true if two 
+    strings have a common substring of length N.
