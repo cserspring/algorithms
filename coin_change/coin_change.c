@@ -1,49 +1,34 @@
 #include <stdio.h>
 #include <stdlib.h>
-
-void count(int row, int col, int *deno, int **table)
+#include <string.h>
+int count( int S[], int m, int n )
 {
-    int i;
-    int j;
-    for (i = 1; i < row; i++) {
-        for (j = 1; j < col; j++) {
-            if (i - deno[j] < 0) {
-                table[i][j] = table[i][j - 1];
-            } else {
-                table[i][j] = table[i - deno[j]][j] + table[i][j - 1];
-            }
-        }
-    }
-}
-
-void print(int **table, int row, int col)
-{
-    
+    // table[i] will be storing the number of solutions for
+    // value i. We need n+1 rows as the table is consturcted
+    // in bottom up manner using the base case (n = 0)
+    int table[n+1];
+ 
+    // Initialize all table values as 0
+    memset(table, 0, sizeof(table));
+ 
+    // Base case (If given value is 0)
+    table[0] = 1;
+ 
+    // Pick all coins one by one and update the table[] values
+    // after the index greater than or equal to the value of the
+    // picked coin
+	int i, j;
+    for(i=0; i<m; i++)
+        for(j=S[i]; j<=n; j++)
+            table[j] += table[j-S[i]];
+ 
+    return table[n];
 }
 
 int main()
 {
-    int denominations[] = {0, 2, 4, 5};
+    int denominations[] = {2, 4, 5};
     int N = 9;
-    int M = 3;
-    int i;
-    int j;
-    //int table[N][M];
-    int **table = (int **)malloc(sizeof(int *)*(N+1));
-    for (i = 0; i < N + 1; i++) {
-        table[i] = (int *)malloc(sizeof(int)*(M+1));
-    }
-    
-    for (i = 0; i < M + 1; i++)
-        table[0][i] = 1;
-    for (i = 1; i < N + 1; i++)
-        table[i][0] = 0;
-    count(N+1, M+1, denominations, table);
-    for (i = 0; i < N + 1; i++) {
-        for (j = 0; j < M + 1; j++) {
-            printf("%d\t", table[i][j]);
-        }
-        printf("\n");
-    }
+	printf("%d\n", count(denominations, 3, N));
     return 0;
 }

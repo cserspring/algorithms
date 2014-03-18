@@ -13,6 +13,10 @@ For example, “g*ks” matches with “geeks” match. And string
    present in second string.
  */
 #include <stdio.h>
+#include <string.h>
+#include <stdlib.h>
+
+static int equalchar(char a, char b);
 int match(char *first, char * second)
 {
     // If we reach at the end of both strings, we are done
@@ -38,9 +42,9 @@ int match(char *first, char * second)
     return 0;
 }
 
-int isMatch(const char *p, const char *s) 
+int isMatchII(const char *p, const char *s) 
 {
-   const char* star=NULL;
+    const char* star=NULL;
     const char* ss=s; 
     while (*s){
         if ((*p=='?')||(*p==*s)){s++;p++;continue;}
@@ -52,9 +56,41 @@ int isMatch(const char *p, const char *s)
     return !*p;
 }
 
+//dp
+int isMatch(const char *p, const char *s)
+{
+    int plen = strlen(p);
+    int slen = strlen(s);
+    int i = 0;
+    int j = 0;
+    int **dp = (int **)malloc((plen+1)*sizeof(int *));
+    for (; i <= plen; ++i)
+        dp[i] = (int *)malloc(sizeof(int)*(slen+1));
+    dp[0][0] = 1;
+    for (i = 1; i <= plen; ++i)
+        dp[i][0] = p[i-1]=='*' ? dp[i-1][0] : 0;
+    for (i = 1; i <= slen; ++i)
+        dp[0][i] = 0;
+    for (i = 1; i <= plen; ++i) {
+        for (j = 1; j <= slen; ++j) {
+            if (p[i-1]=='*') 
+                dp[i][j] = dp[i-1][j] || dp[i][j-1];
+            else 
+                dp[i][j] = dp[i-1][j-1] && equalchar(p[i-1], s[j-1]);
+        }
+    }
+    return dp[plen][slen];
+}
+
+static int equalchar(char a, char b){
+    if (a=='?' || b=='?')
+        return 1;
+    return a==b;
+}
+
 void test(char *first, char *second)
 {  
-    match(first, second)? puts("Yes"): puts("No"); 
+    isMatch(first, second)? puts("Yes"): puts("No"); 
 }
  
 // Driver program to test above functions

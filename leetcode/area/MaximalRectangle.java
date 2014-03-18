@@ -7,7 +7,7 @@ public class MaximalRectangle {
             return 0;
         int m = matrix.length;
         int n = matrix[0].length;
-
+		// Every column
         int[] H = new int[n];
         int[] L = new int[n];
         int[] R = new int[n];

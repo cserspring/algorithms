@@ -48,7 +48,9 @@ public class LRUCache {
     public int get(int key) {
         if (cache.containsKey(key)) {
             Node node = cache.get(key);
+            // Whether it is the head
             if (node.prev != null) {
+                // Two steps here before set the new head
                 node.prev.next = node.next;
                 // Whether it is the tail
                 if (node.next == null) 
@@ -61,7 +63,7 @@ public class LRUCache {
                 node.prev = null;
                 list.head = node;
                 
-                cache.put(key, node);
+                //cache.put(key, node);
             } 
             
             return node.val;
@@ -75,7 +77,9 @@ public class LRUCache {
             node.val = value;
             
             if (node.prev != null) {
+                // Two steps here before set the new head
                 node.prev.next = node.next;
+                // Whether it is the tail
                 if (node.next == null) 
                     list.tail = node.prev;
                 else
