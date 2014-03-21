@@ -1,4 +1,4 @@
-package leetcode;
+package leetcode.arr;
 public class FindTwoLargestNumber {
     public static int[] find(int[] num) {
         if (num.length < 2)

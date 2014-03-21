@@ -1,0 +1,14 @@
+procedure BFS(G,v):
+      create a queue Q
+      enqueue v onto Q
+      mark v
+      while Q is not empty:
+          t ← Q.dequeue()
+          if t is what we are looking for:
+              return t
+          for all edges e in G.adjacentEdges(t) do
+              u ← G.adjacentVertex(t,e)
+              if u is not marked:
+                  mark u
+                  enqueue u onto Q
+      return none
