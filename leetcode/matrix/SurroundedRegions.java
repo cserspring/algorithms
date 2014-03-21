@@ -37,13 +37,14 @@ public class SurroundedRegions {
 		int n = board[0].length;
 		Queue<Point> queue = new ArrayDeque<Point>();
 		
+		// leftmost column and rightmost column
 		for (int i = 0; i < m; ++i) {
 			if (board[i][0]=='O') 
 				queue.add(new Point(i,0));
 			if (board[i][n-1]=='O')
 				queue.add(new Point(i,n-1));
 		}
-		
+		// topmost row and bottom row
 		for (int j = 1; j < n-1; ++j) {
 			if (board[0][j]=='O')
 				queue.add(new Point(0,j));
@@ -51,7 +52,7 @@ public class SurroundedRegions {
 				queue.add(new Point(m-1, j));
 		}
 		
-		//int size = 0;
+		// Then BFS to get all of the 'O's
 		while (!queue.isEmpty()) {
 			Point p = queue.remove();
 			int x = p.x;
@@ -62,7 +63,6 @@ public class SurroundedRegions {
 					if (x+i >=0 && x+i<=m-1 && y+j>=0 && y+j<=n-1 && Math.abs(i+j)==1) {
 						if (board[x+i][y+j]=='O') {
 							queue.add(new Point(x+i, y+j));
-							//size++;
 						}
 					}
 				}

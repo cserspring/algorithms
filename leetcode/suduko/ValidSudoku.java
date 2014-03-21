@@ -1,4 +1,4 @@
-package uncategorized;
+package suduko;
 
 public class ValidSudoku {
 	public boolean isValidSudoku(char[][] board) {

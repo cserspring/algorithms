@@ -1,4 +1,4 @@
-package uncategorized;
+package integer;
 
 import java.util.HashMap;
 
