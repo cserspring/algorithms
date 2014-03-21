@@ -1,4 +1,4 @@
-package leetcode;
+package palindrome;
 
 /*
  * Given a string S, find the longest palindromic substring in S. 

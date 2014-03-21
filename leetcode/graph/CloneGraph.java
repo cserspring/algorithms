@@ -1,3 +1,4 @@
+package graph;
 import java.util.ArrayDeque;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -13,7 +14,7 @@ class UndirectedGraphNode {
     }
 }
 
-public class Solution {
+public class CloneGraph {
     public UndirectedGraphNode cloneGraph(UndirectedGraphNode node) {
         if (node==null)
             return null;

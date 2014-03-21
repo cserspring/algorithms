@@ -1,4 +1,5 @@
-public class Solution {
+package binarytree;
+public class NumOfBST {
     public static int numTrees(int n) {
         if (n <= 1)
             return 1;

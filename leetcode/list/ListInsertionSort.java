@@ -1,4 +1,4 @@
-package leetcode;
+package list;
 
 public class ListInsertionSort {
 	public ListNode insertionSortList(ListNode head) {

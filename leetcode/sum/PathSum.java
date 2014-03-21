@@ -1,4 +1,4 @@
-package leetcode;
+package sum;
 
 class TreeNode {
 	int val;

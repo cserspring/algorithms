@@ -1,3 +1,8 @@
+package buysellstock;
+
+import java.util.ArrayList;
+import java.util.List;
+
 /*
  Say you have an array for which the ith element is the price 
  of a given stock on day i.
@@ -9,7 +14,7 @@
  You may not engage in multiple transactions at the same time 
  (ie, you must sell the stock before you buy again).
  */
-public class Solution {
+public class BuySellStockIII {
     // O(N)
     public static int maxProfit(int[] prices) {
         if (prices.length <= 1)
@@ -40,7 +45,7 @@ public class Solution {
     }
 
     // O(N^2)
-    public static int maxProfit(int[] prices) {
+    public static int maxProfitII(int[] prices) {
         int max = 0;
         for (int i = 0; i < prices.length; ++i) {
             int tmpProfit = partMax(prices, 0, i) + partMax(prices, i+1, prices.length-1);

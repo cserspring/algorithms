@@ -1,4 +1,4 @@
-package leetcode;
+package sum;
 
 import java.util.ArrayList;
 

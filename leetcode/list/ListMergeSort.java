@@ -1,4 +1,4 @@
-package leetcode;
+package list;
 
 public class ListMergeSort {
 	public ListNode sortList(ListNode head) {

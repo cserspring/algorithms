@@ -1,151 +1,91 @@
+package arr;
 /*
- * Design and implement a data structure for Least Recently Used (LRU) cache.
- * It should support the following operations: get and set.
+ * Given two numbers represented as strings, return multiplication of the numbers as a string.
 
- * get(key) - Get the value (will always be positive) of the key if the
-              key exists in the cache, otherwise return -1.
- * set(key, value) - Set or insert the value if the key is not already present. 
-              When the cache reached its capacity, it should invalidate the least 
-              recently used item before inserting a new item.
+   Note: The numbers can be arbitrarily large and are non-negative.
  * */
-import java.util.HashMap;
-
-public class LRUCache {
-    class Node {
-        int key;
-        int val;
-        Node prev;
-        Node next;
-        public Node(int key, int val, Node prev, Node next) {
-            this.key = key;
-            this.val = val;
-            this.prev = prev;
-            this.next = next;
+public class MultiplyStrings {
+	public static String multiply(String num1, String num2) {
+		if (num1.equals("0") || num2.equals("0"))
+			return "0";
+        int len1 = num1.length();
+        int len2 = num2.length();
+        int sum = len1 + len2;
+        
+        int[] res = new int[sum];
+        for (int i = 0; i < sum; ++i)
+        	res[i] = 0;
+        
+        for (int i = 0; i < len1; ++i) {
+        	int carry = 0;
+        	int a = num1.charAt(len1 - 1 - i) - '0';
+        	for (int j = 0; j < len2; ++j) {
+        		int b = num2.charAt(len2 - 1 - j) - '0';
+        		res[i+j] += carry+a*b;
+        		carry = res[i+j]/10;
+        		res[i+j] %= 10;
+        	}
+        	res[i+len2] += carry;
         }
+        
+        while (res[sum-1] == 0)
+        	sum--;
+        StringBuilder sb = new StringBuilder();
+        for (int i = sum - 1; i>=0;--i)
+        	sb.append(res[i]);
+        
+        return sb.toString();
     }
-    
-    class NodeList {
-        Node head;
-        Node tail;
-        public NodeList(Node head, Node tail) {
-            this.head = head;
-            this.tail = tail;
+	public static String multiplyI(String num1, String num2) {
+		if (num1.equals("0") || num2.equals("0"))
+			return "0";
+        int len1 = num1.length();
+        int len2 = num2.length();
+        int sum = len1 + len2;
+        char[] res = new char[sum];
+        
+        for (int i = 0; i < sum; ++i) res[i] = '0';
+        char[] s1 = num1.toCharArray();
+        char[] s2 = num2.toCharArray();
+        reverse(s1);
+        reverse(s2);
+        for (int i = 0; i < len1; ++i) {
+        	int val1 = s1[i]-'0';
+        	int carry = 0;
+        	for (int j = 0; j < len2; ++j) {
+        		int val2 = s2[j] - '0';
+        		int exist = res[i+j] - '0';
+        		int ans = val1*val2+carry+exist;
+        		carry = ans/10;
+        		res[i+j] = (char) ((char) (ans%10)+ '0');
+        	}
+        	if(carry >0) {
+        		res[i+len2] += carry;
+        	}
         }
-    }
-    
-    private HashMap<Integer, Node> cache;
-    private NodeList list;
-    private int capacity;
-    private int size;
-
-    public LRUCache(int capacity) {
-        this.size = 0;
-        this.capacity = capacity;
-        this.cache = new HashMap<Integer, Node>();
-        this.list = new NodeList(null, null);
-    }
-
-    public int get(int key) {
-        if (cache.containsKey(key)) {
-            Node node = cache.get(key);
-            // Whether it is the head
-            if (node.prev != null) {
-                // Two steps here before set the new head
-                node.prev.next = node.next;
-                // Whether it is the tail
-                if (node.next == null) 
-                    list.tail = node.prev;
-                else
-                    node.next.prev = node.prev;
-                // Put it at the front, 4 steps !!!
-                list.head.prev = node;
-                node.next = list.head;
-                node.prev = null;
-                list.head = node;
-                
-                //cache.put(key, node);
-            } 
-            
-            return node.val;
+        reverse(res);
+        String result = String.valueOf(res);
+        int index = 0;
+        for (int i = 0; i < res.length; ++i) {
+        	if (res[i] != '0'){
+        		index=i;
+        		break;
+        	}
         }
-        return -1;
+        return result.substring(index);
     }
+	
+	private static void reverse(char[] s) {
+		for (int i = 0; i < s.length/2; ++i) {
+			char tmp = s[i];
+			s[i] = s[s.length-1-i];
+			s[s.length-1-i] = tmp;
+		}
+	}
+	
 
-    public void set(int key, int value) {
-        if (cache.containsKey(key)) {
-            Node node = cache.get(key);
-            node.val = value;
-            
-            if (node.prev != null) {
-                // Two steps here before set the new head
-                node.prev.next = node.next;
-                // Whether it is the tail
-                if (node.next == null) 
-                    list.tail = node.prev;
-                else
-                    node.next.prev = node.prev;
-                
-                // Put it at the front, 4 steps
-                list.head.prev = node;
-                node.next = list.head;
-                node.prev = null;
-                list.head = node;
-            }
-        } else {
-            Node node = new Node(key, value, null, null);
-            if (size < capacity) {
-                if (list.head == null && list.tail == null) {
-                    list.head = node;
-                    list.tail = node;
-                } else {
-                    // Put it at the front, 4 steps
-                    list.head.prev = node;
-                    node.next = list.head;
-                    node.prev = null;
-                    list.head = node;
-                }
-                cache.put(key, node);
-                size++;
-            } else {
-                Node prev = list.tail.prev;
-                cache.remove(list.tail.key);
-                if (prev != null) {
-                    list.tail = prev;
-                    list.tail.next = null;
-                    
-                    // Put it at the front, 4 steps
-                    list.head.prev = node;
-                    node.next = list.head;
-                    node.prev = null;
-                    list.head = node;
-                } else {
-                    list.head = node;
-                    list.tail = node;
-                }
-                cache.put(key, node);
-            }
-        }
-    }
-    
-    public static void main(String args[]) {
-        LRUCache lrucache = new LRUCache(3);
-        lrucache.set(1, 1);
-        lrucache.set(2, 2);
-        lrucache.set(3, 3);
-        lrucache.set(4, 4);
-        System.out.println(lrucache.get(4));
-        System.out.println(lrucache.get(3));
-        System.out.println(lrucache.get(2));
-        System.out.println(lrucache.get(1));
-        lrucache.set(5, 5);
-        System.out.println(lrucache.get(1));
-        System.out.println(lrucache.get(2));
-        System.out.println(lrucache.get(3));
-        System.out.println(lrucache.get(4));
-        System.out.println(lrucache.get(5));
-        //lrucache.set(3, 2);
-        //lrucache.set(4, 1);
-        //System.out.println(lrucache.get(2));
-        //System.out.println(lrucache.get(3));
-    }
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+		System.out.println(multiply("999", "99"));
+	}
 }

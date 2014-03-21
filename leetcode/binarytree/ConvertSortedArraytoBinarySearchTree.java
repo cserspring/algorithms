@@ -1,4 +1,4 @@
-package leetcode;
+package binarytree;
 
 public class ConvertSortedArraytoBinarySearchTree {
 	public TreeNode sortedArrayToBST(int[] num) {

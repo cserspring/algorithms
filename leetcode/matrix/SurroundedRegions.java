@@ -1,4 +1,4 @@
-package leetcode;
+package matrix;
 /*
  * Given a 2D board containing 'X' and 'O', capture all regions surrounded by 'X'.
 

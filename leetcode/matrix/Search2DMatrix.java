@@ -1,4 +1,4 @@
-package leetcode;
+package matrix;
 
 public class Search2DMatrix {
 	// O(m+n)

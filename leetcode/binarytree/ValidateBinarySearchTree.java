@@ -1,4 +1,4 @@
-package leetcode;
+package binarytree;
 
 public class ValidateBinarySearchTree {
 	public boolean isValidBST(TreeNode root) {

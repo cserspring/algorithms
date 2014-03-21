@@ -1,3 +1,4 @@
+package design;
 //http://docs.oracle.com/javase/7/docs/api/java/util/LinkedHashMap.html
 import java.util.LinkedHashMap;
 import java.util.Map;

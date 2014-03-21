@@ -1,18 +1,6 @@
-package tst;
+package binarytree;
 
 import java.util.ArrayList;
-
-class TreeNode {
-    int val;
-    TreeNode left;
-    TreeNode right;
-
-    TreeNode(int x) {
-        val = x;
-        left = null;
-        right = null;
-    }
-}
 
 public class NumOfBSTPrint {
     public ArrayList<TreeNode> generateTrees(int n) {

@@ -1,4 +1,4 @@
-package leetcode;
+package binarytree;
 
 public class RecoveryBinarySearchTree {
 	private TreeNode tn1;

@@ -1,4 +1,4 @@
-package leetcode;
+package binarytree;
 /*
  * Follow up for problem "Populating Next Right Pointers in Each Node".
 

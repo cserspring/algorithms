@@ -1,4 +1,5 @@
-public class Solution {
+package buysellstock;
+public class BuySellStockII {
     public static int maxProfit(int[] prices) {
         int len = prices.length;
         if (len <= 1)

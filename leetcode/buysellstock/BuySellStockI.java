@@ -1,3 +1,4 @@
+package buysellstock;
 /*
 Say you have an array for which the ith element is the price of a 
 given stock on day i.
@@ -7,10 +8,10 @@ share of the stock, design an algorithm to find the best times to buy and sell.
 
 The question is equivalent to the following:
 
-Find i and j that maximizes Aj â€“ Ai, where i < j.
+Find i and j that maximizes Aj â€?Ai, where i < j.
 There is an obvious O(N2) solution, but in fact we can do better in just O(N).
  */
-public class Solution {
+public class BuySellStockI {
     public static int maxProfit(int[] prices) {
         int len = prices.length;
         if (len <= 0)

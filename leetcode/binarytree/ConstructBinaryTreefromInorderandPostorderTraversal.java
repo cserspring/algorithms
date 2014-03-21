@@ -1,4 +1,4 @@
-package leetcode;
+package binarytree;
 
 public class ConstructBinaryTreefromInorderandPostorderTraversal {
 	public TreeNode buildTree(int[] inorder, int[] postorder) {

@@ -1,4 +1,4 @@
-package leetcode;
+package dp;
 
 /*
  * A message containing letters from A-Z is being encoded to numbers using the following mapping:

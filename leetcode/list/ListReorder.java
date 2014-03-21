@@ -1,4 +1,4 @@
-package leetcode;
+package list;
 
 public class ListReorder {
 	public void reorderList(ListNode head) {

@@ -1,8 +1,9 @@
+package area;
 /**
- * 求矩形覆盖面积，在这里，我用了个HashMap，
- * 因为有的题目要求计算被覆盖了两次或者三次的地方的总面积。
+ * 姹傜煩褰㈣鐩栭潰绉紝鍦ㄨ繖閲岋紝鎴戠敤浜嗕釜HashMap锛�
+ * 鍥犱负鏈夌殑棰樼洰瑕佹眰璁＄畻琚鐩栦簡涓ゆ鎴栬�涓夋鐨勫湴鏂圭殑鎬婚潰绉�
  * 
- * 这里有equals和hashcode的示例代码
+ * 杩欓噷鏈塭quals鍜宧ashcode鐨勭ず渚嬩唬鐮�
  * */
 import java.util.Arrays;
 import java.util.HashMap;

@@ -4,6 +4,7 @@
 # Libraries
 *.lib
 *.a
+*.class
 
 # Shared objects (inc. Windows DLLs)
 *.dll
@@ -15,3 +16,6 @@
 *.exe
 *.out
 *.app
+
+# Folder
+bin/

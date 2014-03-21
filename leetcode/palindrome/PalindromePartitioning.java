@@ -1,4 +1,4 @@
-package leetcode;
+package palindrome;
 
 import java.util.ArrayList;
 

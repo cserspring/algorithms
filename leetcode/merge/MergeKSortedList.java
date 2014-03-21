@@ -1,9 +1,19 @@
-package leetcode;
+package merge;
 
 import java.util.ArrayList;
 import java.util.PriorityQueue;
 import java.util.Comparator;
 
+
+class ListNode {
+	int val;
+	ListNode next;
+
+	ListNode(int x) {
+		val = x;
+		next = null;
+	}
+}
 /*
  * Merge k sorted linked lists and return it as one sorted list. 
  * Analyze and describe its complexity.
