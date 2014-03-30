@@ -1,4 +1,4 @@
-package uncategorized;
+package recursive;
 
 /*
  * Given a set of distinct integers, S, return all possible subsets.

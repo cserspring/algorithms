@@ -1,4 +1,4 @@
-package uncategorized;
+package recursive;
 
 import java.util.ArrayList;
 import java.util.Arrays;

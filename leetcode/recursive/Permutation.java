@@ -1,4 +1,4 @@
-package uncategorized;
+package recursive;
 /*
  * Given a collection of numbers, return all possible permutations.
 
