@@ -45,3 +45,18 @@
 22. O(n) time O(1) space to print link list reversely. 
 23. hasCheated(String s1,String s2, int N) that evaluates to true if two 
     strings have a common substring of length N.
+24. n points, how many squares?
+25. A>B, B>C, but no sure A > C, so get the object who is champion.
+26. Celebrity problem
+27. Give a set of objects and a function. Pass two objects to that function and
+    it can tell you whether one object points to another one. Find one object 
+    that is pointed by all other objects.
+    Solution: 
+    Have a set of candidate nodes. Initially this is the set of all nodes.
+    Start with first node. Call the function with arguments as first node and
+    all other nodes. The nodes that point to first node should removed from the
+    candidate set.
+    Then move onto the second node and test it against the candidate set. 
+    And so on.
+    At the very end, the set of remaining nodes are the ones that all 
+    other nodes point to.

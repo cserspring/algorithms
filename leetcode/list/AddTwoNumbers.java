@@ -9,12 +9,72 @@ package list;
  Output: 7 -> 0 -> 8
  * */
 public class AddTwoNumbers {
+	/*
+	 * Test case: {0} {0} {5} {5} {1} {1}
+	 */
+	/* Iterative */
 	public ListNode addTwoNumbers(ListNode l1, ListNode l2) {
+		ListNode dummy = new ListNode(0);
 		int carry = 0;
-		return addTwoNumbers(l1, l2, carry);
+		ListNode head = dummy;
+		do {
+			int sum = carry;
+			if (l1 != null) {
+				sum += l1.val;
+				l1 = l1.next;
+			}
+
+			if (l2 != null) {
+				sum += l2.val;
+				l2 = l2.next;
+			}
+			carry = sum / 10;
+			sum = sum % 10;
+			ListNode node = new ListNode(sum);
+			head.next = node;
+			head = node;
+		} while (l1 != null || l2 != null || carry > 0);
+
+		return dummy.next;
 	}
 
-	private ListNode addTwoNumbers(ListNode l1, ListNode l2, int carry) {
+	/* Recursive */
+	public ListNode addTwoNumbersII(ListNode l1, ListNode l2) {
+		int carry = 0;
+		return addTwoNumbersII(l1, l2, carry);
+	}
+
+	private ListNode addTwoNumbersII(ListNode l1, ListNode l2, int carry) {
+		if (l1 == null && l2 == null) {
+			if (carry != 0)
+				return new ListNode(carry);
+			return null;
+		}
+
+		ListNode node = new ListNode(0);
+		if (l1 != null) {
+			node.val += l1.val;
+			l1 = l1.next;
+		}
+		if (l2 != null) {
+			node.val += l2.val;
+			l2 = l2.next;
+		}
+		node.val += carry;
+
+		carry = node.val / 10;
+		node.val = node.val % 10;
+
+		node.next = addTwoNumbersII(l1, l2, carry);
+		return node;
+	}
+
+	public ListNode addTwoNumbersIII(ListNode l1, ListNode l2) {
+		int carry = 0;
+		return addTwoNumbersIII(l1, l2, carry);
+	}
+
+	private ListNode addTwoNumbersIII(ListNode l1, ListNode l2, int carry) {
 		if (l1 == null && l2 == null) {
 			if (carry == 0)
 				return null;
@@ -26,7 +86,7 @@ public class AddTwoNumbers {
 			sum += l1.val + l2.val + carry;
 			l1.val = sum % 10;
 			carry = sum / 10;
-			l1.next = addTwoNumbers(l1.next, l2.next, carry);
+			l1.next = addTwoNumbersIII(l1.next, l2.next, carry);
 			return l1;
 		}
 
@@ -34,11 +94,7 @@ public class AddTwoNumbers {
 		sum += p.val + carry;
 		p.val = sum % 10;
 		carry = sum / 10;
-		p.next = addTwoNumbers(null, p.next, carry);
+		p.next = addTwoNumbersIII(null, p.next, carry);
 		return p;
-	}
-
-	public static void main(String[] args) {
-
 	}
 }

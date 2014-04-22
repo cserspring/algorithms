@@ -1,11 +1,42 @@
 package arr;
+
+import java.util.Arrays;
+
 /*
  * Given two numbers represented as strings, return multiplication of the numbers as a string.
 
    Note: The numbers can be arbitrarily large and are non-negative.
  * */
 public class MultiplyStrings {
+	/* Test case: 0, 0 */
 	public static String multiply(String num1, String num2) {
+		int len1 = num1.length();
+		int len2 = num2.length();
+		int sum = len1 + len2;
+		int[] result = new int[sum];
+		Arrays.fill(result, 0);
+
+		for (int i = len1 - 1; i >= 0; --i) {
+			int carry = 0;
+			int val1 = num1.charAt(i) - '0';
+			for (int j = len2 - 1; j >= 0; --j) {
+				int val2 = num2.charAt(j) - '0';
+				result[i + j + 1] += carry + val1 * val2;
+				carry = result[i + j + 1] / 10;
+				result[i + j + 1] %= 10;
+			}
+			result[i] += carry;
+		}
+		int i = 0;
+		while (i < sum - 1 && result[i] == 0)
+			i++;
+		StringBuilder sb = new StringBuilder();
+		for (; i < sum; ++i)
+			sb.append((char) ('0' + result[i]));
+		return sb.toString();
+	}
+	
+	public static String multiplyII(String num1, String num2) {
 		if (num1.equals("0") || num2.equals("0"))
 			return "0";
         int len1 = num1.length();

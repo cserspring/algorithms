@@ -1,9 +1,8 @@
 package area;
 /**
- * 姹傜煩褰㈣鐩栭潰绉紝鍦ㄨ繖閲岋紝鎴戠敤浜嗕釜HashMap锛�
- * 鍥犱负鏈夌殑棰樼洰瑕佹眰璁＄畻琚鐩栦簡涓ゆ鎴栬�涓夋鐨勫湴鏂圭殑鎬婚潰绉�
- * 
- * 杩欓噷鏈塭quals鍜宧ashcode鐨勭ず渚嬩唬鐮�
+ * The input is many rectangles.
+ * We use hashmap to get the covered area, we can even calculate the 
+ * areas which have been covered 2 or 3 times.
  * */
 import java.util.Arrays;
 import java.util.HashMap;

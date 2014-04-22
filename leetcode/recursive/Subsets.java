@@ -38,8 +38,7 @@ public class Subsets {
 			ArrayList<ArrayList<Integer>> resTotal) {
 		if (start == S.length)
 			return resTotal;
-		ArrayList<ArrayList<Integer>> res = new ArrayList<ArrayList<Integer>>(
-				resTotal);
+		ArrayList<ArrayList<Integer>> res = new ArrayList<ArrayList<Integer>>(resTotal);
 
 		for (int j = 0; j < resTotal.size(); ++j) {
 			ArrayList<Integer> tmp = new ArrayList<Integer>(resTotal.get(j));

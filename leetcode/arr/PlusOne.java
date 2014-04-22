@@ -1,4 +1,4 @@
-package uncategorized;
+package arr;
 
 /* 
  * Given a non-negative number represented as an array of digits, plus one to the number.
@@ -23,6 +23,21 @@ public class PlusOne {
 		for (int j = 1; j < n + 1; ++j)
 			res[j] = 0;
 		return res;
+	}
+
+	/* Follow-up To return the result of (x + 1), use bitwise */
+	public static int plusOne(int x) {
+		/* Method 1 -> Use the - and ~ */
+		// return -(~(x));
+
+		/* Method 2 -> More formal */
+		int mask = 1;
+		while ((x & mask) == mask) {
+			x = x ^ mask;
+			mask <<= 1;
+		}
+		x = x ^ mask;
+		return x;
 	}
 
 	public static void main(String args[]) {
