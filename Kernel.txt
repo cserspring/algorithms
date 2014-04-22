@@ -1,0 +1,31 @@
+mutex {
+    int reserved;
+    int tid;
+    int count;
+    int destroyed;
+}
+
+void mutex_lock(mutex_t *mp)
+{
+    if (mp->destroyed)
+        return;
+    xadd(&(mp->count), 1);
+    while (xchg(&(mp->reserved), TRUE))
+        yield(mp->tid);
+    mp->tid = gettid();
+}
+
+void mutex_unlock(mutex_t *mp)
+{
+    xadd(&(mp->count), -1);
+    mp->tid = NON_EXIST_THREAD;
+    mp->reserved = FALSE;
+}
+
+void mutex_destroy(mutex_t *mp)
+{
+    mp->destroyed = TRUE;
+    while (mp->count > 0)
+        xadd(&(mp->count), -1);
+}
+
